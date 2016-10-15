@@ -16,7 +16,7 @@ public class IntBalancedSet implements Cloneable {
     int[] data = new int[MAXIMUM + 1];
     int childCount;
     IntBalancedSet[] subset = new IntBalancedSet[MAXIMUM + 2];
-    
+//    public static int count =0; 
 
    
     public IntBalancedSet()
@@ -132,7 +132,7 @@ public class IntBalancedSet implements Cloneable {
         else
         {
             subset[i].looseAdd(element);
-            if(subset[i].dataCount > 2)
+            if(subset[i].dataCount > MAXIMUM)
                 fixExcess(i);
         }
     }
@@ -168,7 +168,7 @@ public class IntBalancedSet implements Cloneable {
         //copy = root.subset[i].clone();
         //root.childCount++;
         
-        for(int p=0;p<1;p++)
+        for(int p=0;p<MINIMUM;p++)
         {
             leftChild.data[p] = subset[i].data[p];
             rightChild.data[p] = subset[i].data[p+1+1];
@@ -199,6 +199,48 @@ public class IntBalancedSet implements Cloneable {
         
     }
     
+    public void addTree(IntBalancedSet treeB) throws CloneNotSupportedException 
+    {
+        if(treeB!=null)
+        {
+            for(int i=0; i<treeB.dataCount; i++)
+            {
+                add(treeB.data[i]);
+            }
+        
+            for(int i=0; i<childCount; i++)
+            {
+                addTree(treeB.subset[i]);
+            }
+        }
+        
+    }
+    
+    public int size(int count) throws CloneNotSupportedException 
+    {
+        
+        if(this == null)
+            return 0;
+        else
+        {
+            for(int i=0; i<this.dataCount; i++)
+            {
+                count++;
+            }
+        
+            for(int i=0; i<childCount; i++)
+            {
+                 count = (this.subset[i]).size(count);
+            }
+        }
+        return count;
+    }
+    
+    public boolean remove(int target) 
+    {
+        
+    }
+    
     public void print(int indent)
     {
         final int EXTRA_INDENT = 4;
@@ -220,4 +262,10 @@ public class IntBalancedSet implements Cloneable {
             subset[i].print(indent + EXTRA_INDENT);
         }
     }
+
+    
+
+    
+
+    
 }
