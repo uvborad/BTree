@@ -16,11 +16,8 @@ public class IntBalancedSet implements Cloneable {
     int[] data = new int[MAXIMUM + 1];
     int childCount;
     IntBalancedSet[] subset = new IntBalancedSet[MAXIMUM + 2];
-<<<<<<< HEAD
 //    public static int count =0; 
 
-=======
->>>>>>> 410013c196c07f030db8ec2ad20b391fcc28a180
    
     public IntBalancedSet()
     {
@@ -42,6 +39,7 @@ public class IntBalancedSet implements Cloneable {
     {
         
             int i=0;
+ //           for (i=0; i<root.data.length && root.data[i] >= target; i++);
             for(int j = 0; j<data.length; j++)
             {
                 if(data[j]>=target)
@@ -167,6 +165,8 @@ public class IntBalancedSet implements Cloneable {
         IntBalancedSet rightChild = new IntBalancedSet();
         leftChild.dataCount = 1;
         rightChild.dataCount = 1;
+        //copy = root.subset[i].clone();
+        //root.childCount++;
         
         for(int p=0;p<MINIMUM;p++)
         {
