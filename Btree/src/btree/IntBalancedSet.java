@@ -231,10 +231,10 @@ public class IntBalancedSet implements Cloneable {
         return count;
     }
     
-    public boolean remove(int target) 
+    /*public boolean remove(int target) 
     {
         
-    }
+    }*/
     
     public void print(int indent)
     {
